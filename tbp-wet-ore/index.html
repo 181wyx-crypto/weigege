@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TBP湿矿样品制备标准作业视频</title>
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #000; }
+    body { display: grid; place-items: center; }
+    video { width: 100%; max-height: 100vh; }
+  </style>
+</head>
+<body>
+  <video id="video" controls autoplay playsinline preload="metadata"></video>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <script>
+    const video = document.getElementById('video');
+    const source = 'playlist.m3u8';
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = source;
+    } else if (window.Hls && Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(source);
+      hls.attachMedia(video);
+    }
+  </script>
+</body>
+</html>
