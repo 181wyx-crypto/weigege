@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>干矿研磨标准作业视频</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #101418; color: #fff; font-family: "Microsoft YaHei", sans-serif; }
+    main { width: min(960px, 94vw); text-align: center; }
+    h1 { font-size: clamp(22px, 4vw, 36px); margin: 22px 0; }
+    video { width: 100%; max-height: 78vh; background: #000; border-radius: 10px; }
+    p { color: #b8c0c8; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>干矿研磨标准作业视频</h1>
+    <video id="video" controls playsinline preload="metadata"></video>
+    <p id="notice">正在加载视频…</p>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const notice = document.getElementById('notice');
+    const src = 'playlist.m3u8';
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+      notice.textContent = '点击播放';
+    } else if (window.Hls && Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => notice.textContent = '点击播放');
+      hls.on(Hls.Events.ERROR, () => notice.textContent = '视频加载失败，请刷新后重试');
+    } else {
+      notice.textContent = '当前浏览器不支持此视频格式';
+    }
+  </script>
+</body>
+</html>
