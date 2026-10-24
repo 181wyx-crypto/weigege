@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>除尘灰研磨标准作业视频</title>
   <style>
     *{box-sizing:border-box}body{margin:0;background:#111;color:#fff;font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;min-height:100vh;display:grid;place-items:center}.wrap{width:min(100%,960px);padding:16px}h1{text-align:center;font-size:clamp(20px,4vw,30px);margin:0 0 16px}video{display:block;width:100%;max-height:78vh;background:#000;border-radius:10px}.tip{text-align:center;color:#bbb;font-size:14px;margin-top:12px}
@@ -16,9 +17,9 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
   <script>
-    const video=document.getElementById('video'),src='playlist.m3u8';
+    const video=document.getElementById('video'),src='playlist.m3u8?v=20261024fixed';
     if(video.canPlayType('application/vnd.apple.mpegurl')) video.src=src;
-    else if(window.Hls&&Hls.isSupported()){const hls=new Hls();hls.loadSource(src);hls.attachMedia(video);}
+    else if(window.Hls&&Hls.isSupported()){const hls=new Hls({enableWorker:true});hls.loadSource(src);hls.attachMedia(video);}
   </script>
 </body>
 </html>
